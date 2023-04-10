@@ -1,15 +1,26 @@
 object Form1: TForm1
   Left = 1912
-  Height = 1090
-  Top = 1005
-  Width = 1920
+  Height = 1084
+  Top = 1007
+  Width = 1922
   Caption = 'skwugzi'
+  ClientHeight = 1084
+  ClientWidth = 1922
   DesignTimePPI = 106
-  OnClick = FormClick
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
-  OnPaint = FormPaint
   LCLVersion = '2.2.6.0'
+  object JKVM1: TJKVM
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Cursor = crIBeam
+    Left = 0
+    Height = 1091
+    Top = 0
+    Width = 1936
+    FontName = 'Consolas'
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    OnClick = JKVM1Click
+    TabOrder = 0
+  end
   object Timer1: TTimer
     Interval = 40
     OnTimer = Timer1Timer

@@ -25,6 +25,7 @@ object JPrezForm: TJPrezForm
     TabOrder = 0
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 40
     OnTimer = Timer1Timer
     Left = 8

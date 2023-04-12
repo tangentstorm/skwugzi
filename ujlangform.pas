@@ -14,13 +14,12 @@ type
   { TJLangForm }
 
   TJLangForm = class(TForm)
-    procedure jTermSelectionChange(Sender: TObject; User: boolean);
-  private
-    procedure AddLine(s:String);
   published
     JLang1: TJLang;
     jPrompt: TEdit;
     jTerm: TListBox;
+    procedure jTermSelectionChange(Sender: TObject; User: boolean);
+    procedure AddLine(s:String);
     procedure JLang1JWr(s: PJS);
     procedure FormCreate(Sender: TObject);
     procedure jPromptKeyPress(Sender: TObject; var Key: char);

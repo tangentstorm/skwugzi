@@ -9,7 +9,7 @@ uses
   Dialogs, ExtCtrls,
   LazFreeTypeFontCollection,
   BGRABitmap, BGRABitmapTypes, BGRATextFX,
-  jkvm, ujlangform;
+  jlang, jkvm, ujlangform;
 
 type
 
@@ -35,7 +35,24 @@ implementation
 { TJPrezForm }
 
 procedure TJPrezForm.JKVM1Click(Sender: TObject);
-begin Timer1.Enabled:= not Timer1.Enabled;
+  var s,js:String; i:integer;
+  var jtype,jrank: TJI; var jshape,jdata:PJI; jchr:PChar;
+begin // Timer1.Enabled:= not Timer1.Enabled;
+  with JLangForm do begin
+    JLang1.JDo('str =: ''Cogito, ergo sum.''');
+    //a := JLang1.JGetA('CHB__B__app');
+    //a := JLang1.JGetA('str');
+    JLang1.JGetM(PJS('str'), jtype,jrank,jshape,jdata);
+
+    WriteStr(s, 'jtype: ', jtype); AddLine(s);
+    WriteStr(s, 'jrank: ', jrank); AddLine(s);
+    WriteStr(s, 'jshape[0]: ', jshape^); AddLine(s);
+    js := ''; jchr := PChar(jdata);
+    for i := 0 to jshape^-1 do begin
+      js += jchr^; inc(jchr)
+    end;
+    WriteStr(s, 'jdata: ', QuotedStr(js)); AddLine(s);
+  end
 end;
 
 procedure TJPrezForm.JKVM1KeyPress(Sender: TObject; var Key: char);
@@ -57,7 +74,7 @@ end;
 
 
 procedure TJPrezForm.Timer1Timer(Sender: TObject);
-begin Repaint;
+begin // !! eventually: call step on jprez; then Repaint;
 end;
 
 end.

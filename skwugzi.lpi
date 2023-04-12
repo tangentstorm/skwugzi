@@ -48,10 +48,6 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="jprez-link.ijs"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="ujlangform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="JLangForm"/>

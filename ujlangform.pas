@@ -43,7 +43,6 @@ begin
   with jlang1 do begin
     JInit;
     JDo('9!:7 [ (16+i.11){a.  NB. box drawing characters');
-    JDo('ARGV_z_=:,<''''');
   end;
 end;
 

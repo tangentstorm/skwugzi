@@ -14,6 +14,10 @@ type
   { TJLangForm }
 
   TJLangForm = class(TForm)
+    procedure jTermSelectionChange(Sender: TObject; User: boolean);
+  private
+    procedure AddLine(s:String);
+  published
     JLang1: TJLang;
     jPrompt: TEdit;
     jTerm: TListBox;
@@ -46,24 +50,36 @@ begin
   end;
 end;
 
+procedure TJLangForm.jTermSelectionChange(Sender: TObject; User: boolean);
+  var line:string;
+begin
+  if user then begin
+    line := JTerm.Items[JTerm.ItemIndex];
+    jPrompt.Text :=  line.trim(' ');
+    ActiveControl := jPrompt;
+  end;
+end;
+
+procedure TJLangForm.AddLine(s: String);
+begin
+  with JLangForm.JTerm do begin
+    AddItem(s, Nil);
+    ItemIndex := Items.Count-1;
+    MakeCurrentVisible;
+  end
+end;
+
 procedure TJLangForm.JLang1JWr(s: PJS);
   var line : string;
 begin
-  for line in SplitString(string(s), #10) do with JLangForm do begin
-    jTerm.AddItem(line, Nil);
-    jTerm.ItemIndex := jTerm.Items.Count-1;
-    jTerm.MakeCurrentVisible;
-  end
+  for line in SplitString(string(s), #10) do AddLine(line)
 end;
 
 procedure TJLangForm.jPromptKeyPress(Sender: TObject; var Key: char);
 begin
   case key of
     #27 : JPrezForm.ShowOnTop;
-    #13 : begin
-            jTerm.AddItem('  ' + jPrompt.Text, Nil);
-            JLang1.JDo(jPrompt.Text);
-          end
+    #13 : begin AddLine('  ' + jPrompt.Text); JLang1.JDo(jPrompt.Text) end;
   end
 end;
 

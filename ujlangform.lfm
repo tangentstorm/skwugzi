@@ -30,6 +30,7 @@ object JLangForm: TJLangForm
     Font.Name = 'Consolas'
     ItemHeight = 0
     OnKeyPress = jTermKeyPress
+    OnSelectionChange = jTermSelectionChange
     ParentFont = False
     TabOrder = 0
   end

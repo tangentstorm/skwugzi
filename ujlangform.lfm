@@ -1,0 +1,64 @@
+object JLangForm: TJLangForm
+  Left = 1960
+  Height = 532
+  Top = 1341
+  Width = 920
+  ActiveControl = jPrompt
+  Caption = 'JLangForm'
+  ClientHeight = 532
+  ClientWidth = 920
+  DesignTimePPI = 106
+  OnCreate = FormCreate
+  LCLVersion = '2.2.6.0'
+  object jTerm: TListBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = jPrompt
+    Left = 2
+    Height = 486
+    Top = 2
+    Width = 916
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 2
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 2
+    BorderSpacing.Bottom = 2
+    ExtendedSelect = False
+    Font.Height = -27
+    Font.Name = 'Consolas'
+    ItemHeight = 0
+    OnKeyPress = jTermKeyPress
+    ParentFont = False
+    TabOrder = 0
+  end
+  object jPrompt: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = jTerm
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 2
+    Height = 40
+    Top = 490
+    Width = 916
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Left = 2
+    BorderSpacing.Right = 2
+    BorderSpacing.Bottom = 2
+    Constraints.MinHeight = 16
+    Font.Height = -27
+    Font.Name = 'Consolas'
+    OnKeyPress = jPromptKeyPress
+    ParentFont = False
+    TabOrder = 1
+    Text = '+/ p: i. 10'
+  end
+  object JLang1: TJLang
+    OnJWr = JLang1JWr
+    Left = 16
+    Top = 16
+  end
+end

@@ -10,8 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Unit1
-  { you can add units after this };
+  Forms, ujlangform, ujprezform;
 
 {$R *.res}
 
@@ -19,7 +18,9 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TJLangForm, JLangForm);
+  Application.CreateForm(TJPrezForm, JPrezForm);
+  JPrezForm.ShowOnTop;
   Application.Run;
 end.
 

@@ -98,7 +98,9 @@ begin
     gh := JKVM1.GridH;
     gw := JKVM1.GridW;
     for y := 0 to gh-1 do for x := 0 to gw-1 do begin
-      ch := chr(byte(jdata^)); inc(jdata);
+      // hack for half-box for j-kvm/vm
+      if jdata^ = $2580 then ch := #127 else ch := chr(byte(jdata^));
+      inc(jdata);
       fg := FixColor(jdata^); inc(jdata);
       bg := FixColor(jdata^); inc(jdata);
       JKVM1.DrawChar(x,y,ch,fg,bg);

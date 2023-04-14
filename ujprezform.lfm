@@ -5,8 +5,8 @@ object JPrezForm: TJPrezForm
   Width = 1922
   ActiveControl = JKVM1
   Caption = 'skwugzi'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 1084
+  ClientWidth = 1922
   DesignTimePPI = 106
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'

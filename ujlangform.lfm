@@ -1,12 +1,12 @@
 object JLangForm: TJLangForm
-  Left = 1960
-  Height = 532
-  Top = 1341
-  Width = 920
+  Left = 2792
+  Height = 320
+  Top = 1123
+  Width = 656
   ActiveControl = jPrompt
   Caption = 'JLangForm'
-  ClientHeight = 532
-  ClientWidth = 920
+  ClientHeight = 320
+  ClientWidth = 656
   DesignTimePPI = 106
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
@@ -17,9 +17,9 @@ object JLangForm: TJLangForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = jPrompt
     Left = 2
-    Height = 486
+    Height = 274
     Top = 2
-    Width = 916
+    Width = 652
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 2
     BorderSpacing.Top = 2
@@ -43,8 +43,8 @@ object JLangForm: TJLangForm
     AnchorSideBottom.Side = asrBottom
     Left = 2
     Height = 40
-    Top = 490
-    Width = 916
+    Top = 278
+    Width = 652
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 2
     BorderSpacing.Right = 2

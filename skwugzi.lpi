@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="laz_acs"/>
+      </Item>
+      <Item>
         <PackageName Value="jlang_pascal"/>
       </Item>
       <Item>
@@ -51,6 +54,13 @@
         <Filename Value="ujlangform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="JLangForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uaudioform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AudioForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>

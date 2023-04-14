@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, ujlangform, ujprezform;
+  Forms, ujlangform, ujprezform, uaudioform;
 
 {$R *.res}
 
@@ -20,7 +20,9 @@ begin
   Application.Initialize;
   Application.CreateForm(TJLangForm, JLangForm);
   Application.CreateForm(TJPrezForm, JPrezForm);
+  Application.CreateForm(TAudioForm, AudioForm);
   JPrezForm.ShowOnTop;
+  AudioForm.ShowOnTop;
   Application.Run;
 end.
 

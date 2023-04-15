@@ -1,10 +1,10 @@
 object AudioForm: TAudioForm
-  Left = 2388
-  Height = 155
-  Top = 1122
+  Left = 1011
+  Height = 396
+  Top = 574
   Width = 323
   Caption = 'ACS Demo'
-  ClientHeight = 155
+  ClientHeight = 396
   ClientWidth = 323
   DesignTimePPI = 106
   OnCreate = FormCreate
@@ -45,11 +45,11 @@ object AudioForm: TAudioForm
     TabOrder = 3
     Text = 'InputDeviceCombo'
   end
-  object FileNameEdit1: TFileNameEdit
-    Left = 8
+  object WavePath: TFileNameEdit
+    Left = 32
     Height = 25
     Top = 120
-    Width = 304
+    Width = 280
     FileName = 'save-that-wave.wav'
     FilterIndex = 0
     HideDirectories = False
@@ -57,7 +57,7 @@ object AudioForm: TAudioForm
     NumGlyphs = 1
     MaxLength = 0
     TabOrder = 4
-    OnChange = FileNameEdit1Change
+    OnChange = WavePathChange
     Text = 'save-that-wave.wav'
   end
   object OutputDeviceCombo: TComboBox
@@ -70,6 +70,28 @@ object AudioForm: TAudioForm
     TabOrder = 5
     Text = 'OutputDeviceCombo'
   end
+  object Messages: TListBox
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Left = 8
+    Height = 224
+    Top = 160
+    Width = 302
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ItemHeight = 0
+    TabOrder = 6
+  end
+  object FileExistsCB: TCheckBox
+    Left = 8
+    Height = 21
+    Hint = 'Checked if the file exists.'
+    Top = 120
+    Width = 22
+    Color = clInactiveCaption
+    Enabled = False
+    ParentColor = False
+    TabOrder = 7
+  end
   object AcsAudioIn1: TAcsAudioIn
     DriverName = 'Wavemapper'
     Device = 0
@@ -77,35 +99,52 @@ object AudioForm: TAudioForm
     InChannels = 1
     InSampleRate = 44100
     RecTime = 0
-    Left = 16
-    Top = 64
+    Left = 56
+    Top = 304
   end
   object AcsAudioOut1: TAcsAudioOut
     Input = AcsFileIn1
+    OnDone = AcsAudioOut1Done
+    OnProgress = AcsAudioOut1Progress
+    OnThreadException = AcsAudioOut1ThreadException
     BufferSize = 16384
     PrefetchMode = pmAuto
     DriverName = 'Wavemapper'
     Device = 0
     Volume = 0
     Delay = -1
-    Left = 272
-    Top = 64
+    Left = 208
+    Top = 304
   end
   object AcsFileIn1: TAcsFileIn
     StartSample = 0
     EndSample = -1
     FileName = 'save-that-wave.wav'
     Loop = False
-    Left = 232
-    Top = 64
+    Left = 160
+    Top = 304
   end
   object AcsFileOut1: TAcsFileOut
     Input = AcsAudioIn1
+    OnDone = AcsFileOut1Done
+    OnThreadException = AcsFileOut1ThreadException
     BufferSize = 0
     PrefetchMode = pmAuto
     FileMode = foRewrite
     FileName = 'save-that-wave.wav'
-    Left = 56
-    Top = 64
+    Left = 104
+    Top = 304
+  end
+  object WaitToRecord: TTimer
+    Enabled = False
+    Interval = 200
+    OnTimer = WaitToRecordTimer
+    Left = 48
+    Top = 216
+  end
+  object WaitToStop: TTimer
+    OnTimer = WaitToStopTimer
+    Left = 136
+    Top = 216
   end
 end

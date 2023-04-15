@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, ujlangform, ujprezform, uaudioform;
+  Forms, ujlangform, ujprezform, uaudioform, laz_acs_lib;
 
 {$R *.res}
 

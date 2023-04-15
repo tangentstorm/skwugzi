@@ -9,7 +9,8 @@ uses
   Dialogs, ExtCtrls,
   LazFreeTypeFontCollection, LCLType,
   BGRABitmap, BGRABitmapTypes, BGRATextFX,
-  jlang, jkvm, ujlangform;
+  ujlangform, uaudioform,
+  jlang, jkvm;
 
 type
 
@@ -20,6 +21,7 @@ type
     JKVM1: TJKVM;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
+    procedure JKVM1KeyDown(Sender: TObject; var Key: Word; {%H-}Shift: TShiftState);
     procedure JKVM1KeyPress(Sender: TObject; var Key: char);
     procedure JKVM1Click(Sender: TObject);
     procedure JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -89,7 +91,7 @@ end;
 
 procedure TJPrezForm.DrawJPrezScreen;
   var jtype,jrank: TJI; jshape:PJI=nil; jdata:PJI=nil;
-      gw,gh,y,x : integer; fg,bg : uint32; ch:char;
+      gw,gh,y,x : integer; fg,bg : uint32; ch:char; wp:string;
 begin
   JLangForm.JLang1.JDo('render__app _');
   with JLangForm do begin
@@ -104,7 +106,11 @@ begin
       fg := FixColor(jdata^); inc(jdata);
       bg := FixColor(jdata^); inc(jdata);
       JKVM1.DrawChar(x,y,ch,fg,bg);
-    end
+    end;
+    if Assigned(AudioForm) then begin
+      JLang1.JDo('wp =: wavpath _'); wp := JLang1.JGetStr('wp');
+      if AudioForm.WavePath.FileName <> wp then AudioForm.WavePath.FileName := wp;
+    end;
   end;
   JKVM1.Repaint;
 end;
@@ -124,6 +130,16 @@ procedure TJPrezForm.JKVM1Click(Sender: TObject);
 begin
 end;
 
+
+procedure TJPrezForm.JKVM1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if (key = VK_INSERT) then with AudioForm do begin
+    // my keyboard is mechanical and therefore noisy, so use a slight
+    // delay to avoid recording the sound of the key going down.
+    if OkToRecord then RecordAudioAfter(400)
+  end
+end;
+
 procedure TJPrezForm.JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   var fns : string = ''; kept : boolean = false;
   procedure keep(s:string);
@@ -140,6 +156,12 @@ begin
     VK_DOWN: keep('k_ardn');
     VK_RIGHT: keep('k_arrt');
     VK_LEFT: keep('k_arlf');
+    // stop audio recording immediately. it's no good to use the delay
+    // trick here because (at least on my keyboard) you hear the click
+    // of the key coming up. so you just have to train yourself to not
+    // lift your finger until you're done talking.
+    VK_INSERT: AudioForm.StopAudio;
+    VK_PAUSE: AudioForm.PlayAudio;
   end;
   if kept then begin keep('k_any'); SendKeyToJPrez(' ', fns); end
 end;
@@ -149,7 +171,8 @@ procedure TJPrezForm.JKVM1KeyPress(Sender: TObject; var Key: char);
   var fns : string = '';
   procedure keep(s:string); begin fns += QuotedStr(s) + ';' end;
 begin
-  if key = #27 { escape } then JLangForm.ShowOnTop
+  if key = #27 { escape } then begin
+    AudioForm.ShowOnTop; JLangForm.ShowOnTop end
   else case key of
     ' ': keep('k_space');
     '+': keep('k_plus');

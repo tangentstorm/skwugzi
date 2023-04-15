@@ -21,6 +21,7 @@ object JPrezForm: TJPrezForm
     FontName = 'Consolas'
     Anchors = [akTop, akLeft, akRight, akBottom]
     OnClick = JKVM1Click
+    OnKeyDown = JKVM1KeyDown
     OnKeyPress = JKVM1KeyPress
     OnKeyUp = JKVM1KeyUp
     TabOrder = 0

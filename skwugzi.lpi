@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="laz_acs_lib"/>
+      </Item>
+      <Item>
         <PackageName Value="laz_acs"/>
       </Item>
       <Item>

@@ -168,20 +168,26 @@ end;
 
 
 procedure TJPrezForm.JKVM1KeyPress(Sender: TObject; var Key: char);
-  var fns : string = '';
-  procedure keep(s:string); begin fns += QuotedStr(s) + ';' end;
+  var fns : string = ''; kept : bool = false;
+  procedure keep(s:string);
+  begin fns += QuotedStr(s) + ';'; kept := true;
+  end;
 begin
+  //   a.{~32+i.3 32  NB. printable ascii characters:
+  // !"#$%&'()*+,-./0123456789:;<=>?
+  // @ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
+  // `abcdefghijklmnopqrstuvwxyz{|}~
   if key = #27 { escape } then begin
     AudioForm.ShowOnTop; JLangForm.ShowOnTop end
   else case key of
     ' ': keep('k_space');
     '+': keep('k_plus');
     '''': keep('k_quote');
-    'a'..'z',
-    'A'..'Z',
-    '0'..'1': keep('k_' + key);
+    'a'..'z', 'A'..'Z', '0'..'1': keep('k_' + key);
   end;
-  keep('k_asc'); SendKeyToJPrez(key, fns);
+  // these don't yet have special names in jkvm:
+  if (key>#32) and (key<#127) then kept := true;
+  if kept then begin keep('k_asc'); SendKeyToJPrez(key, fns); end
 end;
 
 procedure TJPrezForm.FormCreate(Sender: TObject);

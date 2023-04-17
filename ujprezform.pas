@@ -10,7 +10,7 @@ uses
   LazFreeTypeFontCollection, LCLType,
   BGRABitmap, BGRABitmapTypes, BGRATextFX,
   ujlangform, uaudioform,
-  jlang, jkvm;
+  ujlang, ujkvm;
 
 type
 

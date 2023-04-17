@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, StrUtils,
   Forms, Controls, Graphics, Dialogs, StdCtrls,
-  jlang;
+  ujlang;
 
 type
 
@@ -39,7 +39,7 @@ uses ujprezform;
 
 procedure TJLangForm.FormCreate(Sender: TObject);
 begin
-  if not jlang.InitFromEnv then begin
+  if not ujlang.InitFromEnv then begin
     ShowMessage('Unable to load J: missing or invalid J_HOME environment variable.');
     Halt;
   end;

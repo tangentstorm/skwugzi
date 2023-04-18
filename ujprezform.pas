@@ -180,9 +180,9 @@ begin
   if key = #27 { escape } then begin
     AudioForm.ShowOnTop; JLangForm.ShowOnTop end
   else case key of
-    ' ': keep('k_space');
-    '+': keep('k_plus');
-    '''': keep('k_quote');
+    ' ': keep('k_spc');
+   // '+': keep('k_plus');
+   // '''': keep('k_quote');
     'a'..'z', 'A'..'Z', '0'..'1': keep('k_' + key);
   end;
   // these don't yet have special names in jkvm:

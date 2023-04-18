@@ -1,13 +1,12 @@
 object JLangForm: TJLangForm
-  Left = 2792
-  Height = 320
-  Top = 1123
-  Width = 656
+  Left = 769
+  Height = 290
+  Top = 141
+  Width = 594
   ActiveControl = jPrompt
   Caption = 'JLangForm'
-  ClientHeight = 320
-  ClientWidth = 656
-  DesignTimePPI = 106
+  ClientHeight = 290
+  ClientWidth = 594
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object jTerm: TListBox
@@ -17,16 +16,16 @@ object JLangForm: TJLangForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = jPrompt
     Left = 2
-    Height = 274
+    Height = 248
     Top = 2
-    Width = 652
+    Width = 590
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 2
     BorderSpacing.Top = 2
     BorderSpacing.Right = 2
     BorderSpacing.Bottom = 2
     ExtendedSelect = False
-    Font.Height = -27
+    Font.Height = -24
     Font.Name = 'Consolas'
     ItemHeight = 0
     OnKeyPress = jTermKeyPress
@@ -42,15 +41,15 @@ object JLangForm: TJLangForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 2
-    Height = 40
-    Top = 278
-    Width = 652
+    Height = 36
+    Top = 252
+    Width = 590
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 2
     BorderSpacing.Right = 2
     BorderSpacing.Bottom = 2
-    Constraints.MinHeight = 16
-    Font.Height = -27
+    Constraints.MinHeight = 14
+    Font.Height = -24
     Font.Name = 'Consolas'
     OnKeyPress = jPromptKeyPress
     ParentFont = False
@@ -59,7 +58,8 @@ object JLangForm: TJLangForm
   end
   object JLang1: TJLang
     OnJWr = JLang1JWr
-    Left = 16
-    Top = 16
+    OnJWd = JLang1JWd
+    Left = 14
+    Top = 14
   end
 end

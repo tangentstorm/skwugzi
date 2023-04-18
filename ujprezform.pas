@@ -149,6 +149,18 @@ begin
     VK_A .. VK_Z :
       if ssCtrl in Shift then keep('kc_' + lowercase(chr(byte(key))))
       else if ssAlt in Shift then keep('ka_' + lowercase(chr(byte(key))));
+    VK_F1: keep('k_f1');
+    VK_F2: keep('k_f2');
+    VK_F3: keep('k_f3');
+    VK_F4: keep('k_f4');
+    VK_F5: keep('k_f5');
+    VK_F6: keep('k_f6');
+    VK_F7: keep('k_f7');
+    VK_F8: keep('k_f8');
+    VK_F9: keep('k_f9');
+    VK_F10: keep('k_f10');
+    VK_F11: keep('k_f11');
+    VK_F12: keep('k_f12');
     VK_RETURN: keep('kc_m');
     VK_BACK: keep('k_bsp');
     VK_TAB: keep('kc_i');

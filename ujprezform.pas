@@ -44,23 +44,23 @@ var XTermColors : Array of TColor;
 procedure MakeXTermColors;
   var i,r,g,b:integer; ramp : Array of integer; color:TColor;
 begin
-  { ansi colors }
+  { ansi colors, but in bgr layout }
   XTermColors := [
     $000000, // black
-    $aa0000, // red
+    $0000aa, // red
     $00aa00, // green
-    $aaaa00, // dark yellow ( note: not vga brown! )
-    $0000aa, // blue
+    $00aaaa, // dark yellow ( note: not vga brown! )
+    $aa0000, // blue
     $aa00aa, // magenta
-    $00aaaa, // cyan
+    $aaaa00, // cyan
     $aaaaaa, // gray
     $555555, // dark gray
-    $ff5555, // light red
+    $5555ff, // light red
     $55ff55, // light green
-    $ffff55, // yellow
-    $5555ff, // light blue
+    $55ffff, // yellow
+    $ff5555, // light blue
     $ff55ff, // light magenta
-    $55ffff, // light cyan
+    $ffff55, // light cyan
     $ffffff];// white
   i := Length(XTermColors);
   // colors 16..231 are a color cube:

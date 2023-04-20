@@ -93,7 +93,7 @@ end;
 
 procedure TJPrezForm.DrawJPrezScreen;
   var jtype,jrank: TJI; jshape:PJI=nil; jdata:PJI=nil;
-      gw,gh,y,x : integer; fg,bg : uint32; ch:char; wp:string;
+      gw,gh,y,x : integer; fg,bg : uint32; ch:WideChar; wp:string;
 begin
   JLangForm.JLang1.JDo('render__app _');
   with JLangForm do begin
@@ -103,8 +103,7 @@ begin
     gw := JKVM1.GridW;
     for y := 0 to gh-1 do for x := 0 to gw-1 do begin
       // hack for half-box for j-kvm/vm
-      if jdata^ = $2580 then ch := #127 else ch := chr(byte(jdata^));
-      inc(jdata);
+      ch := widechar(jdata^); inc(jdata);
       fg := FixColor(jdata^); inc(jdata);
       bg := FixColor(jdata^); inc(jdata);
       JKVM1.DrawChar(x,y,ch,fg,bg);

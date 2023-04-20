@@ -176,7 +176,7 @@ begin
     VK_INSERT: AudioForm.StopAudio;
     VK_PAUSE: AudioForm.PlayAudio;
   end;
-  if kept then begin keep('k_any'); SendKeyToJPrez(' ', fns); end
+  if kept then begin keep('k_any'); SendKeyToJPrez('', fns); end
 end;
 
 procedure TJPrezForm.OpenDialog1SelectionChange(Sender: TObject);

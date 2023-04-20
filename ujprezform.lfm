@@ -5,9 +5,8 @@ object JPrezForm: TJPrezForm
   Width = 1918
   ActiveControl = JKVM1
   Caption = 'skwugzi'
-  ClientHeight = 0
-  ClientWidth = 0
-  OnCreate = FormCreate
+  ClientHeight = 1047
+  ClientWidth = 1918
   LCLVersion = '2.2.6.0'
   object JKVM1: TJKVM
     AnchorSideRight.Side = asrBottom
@@ -26,6 +25,7 @@ object JPrezForm: TJPrezForm
     TabOrder = 0
   end
   object Timer1: TTimer
+    Enabled = False
     Interval = 1
     OnTimer = Timer1Timer
     Left = 7

@@ -21,7 +21,7 @@ type
     JKVM1: TJKVM;
     OpenDialog1: TOpenDialog;
     Timer1: TTimer;
-    procedure FormCreate(Sender: TObject);
+    procedure OnJLangReady;
     procedure JKVM1KeyDown(Sender: TObject; var Key: Word; {%H-}Shift: TShiftState);
     procedure JKVM1KeyPress(Sender: TObject; var Key: char);
     procedure JKVM1Click(Sender: TObject);
@@ -213,7 +213,7 @@ begin
   if kept then begin keep('k_asc'); SendKeyToJPrez(key, fns); end
 end;
 
-procedure TJPrezForm.FormCreate(Sender: TObject);
+procedure TJPrezForm.OnJLangReady;
 begin
   with JLangForm.JLang1 do begin
     JDo('load ''tangentstorm/j-kvm/vid''');
@@ -223,7 +223,7 @@ begin
     JDo('load ''jprez.ijs''');
     JDo('goto 0');
   end;
-  DrawJPrezScreen;
+  Timer1.Enabled:=true;
 end;
 
 procedure TJPrezForm.Timer1Timer(Sender: TObject);

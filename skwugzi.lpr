@@ -18,11 +18,10 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TJLangForm, JLangForm);
   Application.CreateForm(TJPrezForm, JPrezForm);
+  Application.CreateForm(TJLangForm, JLangForm);
   Application.CreateForm(TAudioForm, AudioForm);
-  JPrezForm.ShowOnTop;
-  AudioForm.ShowOnTop;
+  JPrezForm.OnJLangReady;
   Application.Run;
 end.
 

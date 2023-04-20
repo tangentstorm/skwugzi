@@ -31,4 +31,11 @@ object JPrezForm: TJPrezForm
     Left = 7
     Top = 7
   end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.org'
+    FileName = './screenplay.org'
+    OnSelectionChange = OpenDialog1SelectionChange
+    Left = 72
+    Top = 7
+  end
 end

@@ -62,6 +62,7 @@ end;
 
 const
   WD_PLAYAUDIO = 8000;
+  WD_OPEN_FILE = 8010;
 
 function TJLangForm.JLang1JWd(x: TJI; a: PJA; var res: PJA; const loc:String): TJI;
   var s : String =''; pc : Pchar; i: integer;
@@ -82,10 +83,13 @@ begin
   end;
   { commands for this frontend }
   case x of
+    // 0 :  // what to call this?
+    //  if s='qwd' then result := @
     WD_PLAYAUDIO :
       begin
         AudioForm.WavePath.FileName:=s; AudioForm.PlayAudio
       end;
+    WD_OPEN_FILE : JPrezForm.OpenDialog1.Execute;
   end;
   res := nil; result := 0;
 end;

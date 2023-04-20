@@ -19,12 +19,14 @@ type
   TJPrezForm = class(TForm)
   published
     JKVM1: TJKVM;
+    OpenDialog1: TOpenDialog;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure JKVM1KeyDown(Sender: TObject; var Key: Word; {%H-}Shift: TShiftState);
     procedure JKVM1KeyPress(Sender: TObject; var Key: char);
     procedure JKVM1Click(Sender: TObject);
     procedure JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure OpenDialog1SelectionChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   protected
     procedure DrawJPrezScreen;
@@ -176,6 +178,16 @@ begin
     VK_PAUSE: AudioForm.PlayAudio;
   end;
   if kept then begin keep('k_any'); SendKeyToJPrez(' ', fns); end
+end;
+
+procedure TJPrezForm.OpenDialog1SelectionChange(Sender: TObject);
+begin
+  with JLangForm do begin
+    // TODO: check for unsaved file.
+    AddLine('open file: ' + OpenDialog1.FileName);
+    JLang1.JDo('ORG_PATH =: ' + QuotedStr(OpenDialog1.FileName));
+    JLang1.JDo('reopen _');
+  end;
 end;
 
 

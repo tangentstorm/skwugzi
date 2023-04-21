@@ -133,38 +133,44 @@ end;
 
 
 procedure TJPrezForm.JKVM1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-  var fns : string = ''; kept : boolean = false;
+  var fns : string = ''; k:string='k'; kept : boolean = false;
   procedure keep(s:string);
   begin kept := true; fns += QuotedStr(s) + ';'; end;
 begin
   // my keyboard is mechanical and therefore noisy, so use a slight
   // delay to avoid recording the sound of the key going down.
   if (key = VK_INSERT) and AudioForm.OkToRecord then AudioForm.RecordAudioAfter(400)
-  else case key of
-    VK_A .. VK_Z :
-      if ssCtrl in Shift then keep('kc_' + lowercase(chr(byte(key))))
-      else if ssAlt in Shift then keep('ka_' + lowercase(chr(byte(key))));
-    VK_F1: keep('k_f1');
-    VK_F2: keep('k_f2');
-    VK_F3: keep('k_f3');
-    VK_F4: keep('k_f4');
-    VK_F5: keep('k_f5');
-    VK_F6: keep('k_f6');
-    VK_F7: keep('k_f7');
-    VK_F8: keep('k_f8');
-    VK_F9: keep('k_f9');
-    VK_F10: keep('k_f10');
-    VK_F11: keep('k_f11');
-    VK_F12: keep('k_f12');
-    VK_RETURN: keep('kc_m');
-    VK_BACK: keep('k_bsp');
-    VK_TAB: keep('kc_i');
-    VK_UP: keep('k_arup');
-    VK_DOWN: keep('k_ardn');
-    VK_RIGHT: keep('k_arrt');
-    VK_LEFT: keep('k_arlf');
+  else begin
+    if ssCtrl in Shift then k += 'c';
+    if ssAlt in Shift then k += 'a';
+    case key of
+      VK_A .. VK_Z : keep(k + '_' + lowercase(chr(byte(key))));
+      VK_F1: keep(k+'_f1');
+      VK_F2: keep(k+'_f2');
+      VK_F3: keep(k+'_f3');
+      VK_F4: keep(k+'_f4');
+      VK_F5: keep(k+'_f5');
+      VK_F6: keep(k+'_f6');
+      VK_F7: keep(k+'_f7');
+      VK_F8: keep(k+'_f8');
+      VK_F9: keep(k+'_f9');
+      VK_F10: keep(k+'_f10');
+      VK_F11: keep(k+'_f11');
+      VK_F12: keep(k+'_f12');
+      VK_BACK: keep(k+'_bsp');
+      VK_UP: keep(k+'_arup');
+      VK_DOWN: keep(k+'_ardn');
+      VK_RIGHT: keep(k+'_arrt');
+      VK_LEFT: keep(k+'_arlf');
+      // -- todo: fix these (distinguish between actual key and ^M/^I)
+      // that way i can have kc_ret kc_tab...
+      VK_RETURN: keep('kc_m');
+      VK_TAB: keep('kc_i');
+    end;
   end;
-  if kept then begin keep('k_any'); SendKeyToJPrez('', fns); end
+  if kept then begin keep('k_any'); SendKeyToJPrez('', fns); end;
+  // prevent lazarus from thinking alt-xxx is a keyboard shortcut:
+  if (ssAlt in Shift) and (key <> VK_f4) then key := 0
 end;
 
 procedure TJPrezForm.JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);

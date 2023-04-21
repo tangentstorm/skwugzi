@@ -133,20 +133,14 @@ end;
 
 
 procedure TJPrezForm.JKVM1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if (key = VK_INSERT) then with AudioForm do begin
-    // my keyboard is mechanical and therefore noisy, so use a slight
-    // delay to avoid recording the sound of the key going down.
-    if OkToRecord then RecordAudioAfter(400)
-  end
-end;
-
-procedure TJPrezForm.JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   var fns : string = ''; kept : boolean = false;
   procedure keep(s:string);
   begin kept := true; fns += QuotedStr(s) + ';'; end;
 begin
-  case key of
+  // my keyboard is mechanical and therefore noisy, so use a slight
+  // delay to avoid recording the sound of the key going down.
+  if (key = VK_INSERT) and AudioForm.OkToRecord then AudioForm.RecordAudioAfter(400)
+  else case key of
     VK_A .. VK_Z :
       if ssCtrl in Shift then keep('kc_' + lowercase(chr(byte(key))))
       else if ssAlt in Shift then keep('ka_' + lowercase(chr(byte(key))));
@@ -169,6 +163,13 @@ begin
     VK_DOWN: keep('k_ardn');
     VK_RIGHT: keep('k_arrt');
     VK_LEFT: keep('k_arlf');
+  end;
+  if kept then begin keep('k_any'); SendKeyToJPrez('', fns); end
+end;
+
+procedure TJPrezForm.JKVM1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  case key of
     // stop audio recording immediately. it's no good to use the delay
     // trick here because (at least on my keyboard) you hear the click
     // of the key coming up. so you just have to train yourself to not
@@ -176,7 +177,6 @@ begin
     VK_INSERT: AudioForm.StopAudio;
     VK_PAUSE: AudioForm.PlayAudio;
   end;
-  if kept then begin keep('k_any'); SendKeyToJPrez('', fns); end
 end;
 
 procedure TJPrezForm.OpenDialog1SelectionChange(Sender: TObject);

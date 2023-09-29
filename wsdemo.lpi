@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="PasLibVlcPlayer"/>
+      </Item>
+      <Item>
         <PackageName Value="MPlayerControlLaz"/>
       </Item>
       <Item>

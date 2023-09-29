@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 245
+  Left = 59
   Height = 522
-  Top = 364
+  Top = 65
   Width = 741
   Caption = 'Websocket Message Thing'
   ClientHeight = 522

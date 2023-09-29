@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ActnList,
-  ExtCtrls, ssockets, wsmessages, wsstream, websocketsclient,
+  ExtCtrls, ssockets, wsmessages, wsstream, websocketsclient, uplayerform,
   fpjson, jsonparser;
 
 type
@@ -72,10 +72,7 @@ procedure TForm1.playButtonClick(Sender: TObject);
 begin
   uplayerform.PlayerForm.Show;
   with uplayerform.PlayerForm do begin
-    playerControl.Filename :=
-      StringReplace(filenameEdit.Text, '/', '\', [rfReplaceAll]);
-    playerControl.Play;
-    playerControl.Volume := 100;
+    vlc.play(StringReplace(filenameEdit.Text, '/', '\', [rfReplaceAll]));
   end;
 end;
 

@@ -5,16 +5,20 @@ unit uplayerform;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, MPlayerCtrl;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, EditBtn,
+  PasLibVlcPlayerUnit;
 
 type
 
   { TPlayerForm }
 
   TPlayerForm = class(TForm)
-    playerControl: TMPlayerControl;
+    FileNameEdit1: TFileNameEdit;
+    vlc: TPasLibVlcPlayer;
+    procedure FileNameEdit1AcceptFileName(Sender: TObject; var Value: String);
+    procedure FileNameEdit1Change(Sender: TObject);
+    procedure FileNameEdit1EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure playerControlClick(Sender: TObject);
   private
 
   public
@@ -30,15 +34,25 @@ implementation
 
 { TPlayerForm }
 
-procedure TPlayerForm.FormCreate(Sender: TObject);
+procedure TPlayerForm.FileNameEdit1Change(Sender: TObject);
 begin
-  playerControl.MPlayerPath := 'D:\ver\skwugzi\mplayer\mplayer.exe';
+
 end;
 
-procedure TPlayerForm.playerControlClick(Sender: TObject);
+procedure TPlayerForm.FileNameEdit1EditingDone(Sender: TObject);
 begin
-  if playerControl.playing then playerControl.Stop
-  else playerControl.Play;
+  vlc.Play(fileNameEdit1.FileName);
+end;
+
+procedure TPlayerForm.FileNameEdit1AcceptFileName(Sender: TObject;
+  var Value: String);
+begin
+  vlc.Play(value)
+end;
+
+procedure TPlayerForm.FormCreate(Sender: TObject);
+begin
+
 end;
 
 end.

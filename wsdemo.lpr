@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, uwsdemo, mplayercontrollaz, uplayerform
+  Forms, uwsdemo, mplayercontrollaz, uplayerform, PasLibVlcPlayer
   { you can add units after this };
 
 {$R *.res}

@@ -1,22 +1,43 @@
 object PlayerForm: TPlayerForm
-  Left = 714
-  Height = 240
-  Top = 297
-  Width = 320
+  Left = 2434
+  Height = 575
+  Top = 126
+  Width = 960
   Anchors = [akTop, akLeft, akRight, akBottom]
+  BorderStyle = bsDialog
   Caption = 'Player'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 575
+  ClientWidth = 960
   OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
-  object playerControl: TMPlayerControl
+  object vlc: TPasLibVlcPlayer
     Left = 0
-    Height = 240
-    Top = 0
-    Width = 320
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    Loop = 0
-    OnClick = playerControlClick
-    Volume = 0
+    Height = 540
+    Top = 35
+    Width = 960
+    Anchors = [akLeft, akBottom]
+    BevelOuter = bvNone
+    Caption = 'vlc'
+    ParentColor = False
+    TabOrder = 0
+    SnapShotFmt = 'png'
+    MouseEventsHandler = mehComponent
+  end
+  object FileNameEdit1: TFileNameEdit
+    Left = 8
+    Height = 23
+    Top = 8
+    Width = 568
+    FileName = 'FileNameEdit1'
+    OnAcceptFileName = FileNameEdit1AcceptFileName
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 1
+    OnChange = FileNameEdit1Change
+    OnEditingDone = FileNameEdit1EditingDone
+    Text = 'FileNameEdit1'
   end
 end

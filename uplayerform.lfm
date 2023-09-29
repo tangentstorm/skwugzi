@@ -1,0 +1,22 @@
+object PlayerForm: TPlayerForm
+  Left = 714
+  Height = 240
+  Top = 297
+  Width = 320
+  Anchors = [akTop, akLeft, akRight, akBottom]
+  Caption = 'Player'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  LCLVersion = '2.2.6.0'
+  object playerControl: TMPlayerControl
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Loop = 0
+    OnClick = playerControlClick
+    Volume = 0
+  end
+end

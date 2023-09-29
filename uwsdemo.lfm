@@ -1,0 +1,155 @@
+object Form1: TForm1
+  Left = 245
+  Height = 522
+  Top = 364
+  Width = 741
+  Caption = 'Websocket Message Thing'
+  ClientHeight = 522
+  ClientWidth = 741
+  OnCreate = FormCreate
+  LCLVersion = '2.2.6.0'
+  object inputMemo: TMemo
+    Left = 16
+    Height = 331
+    Top = 144
+    Width = 350
+    Font.Height = -19
+    Font.Name = 'Consolas'
+    ParentFont = False
+    TabOrder = 0
+  end
+  object SendButton: TButton
+    Left = 291
+    Height = 25
+    Top = 488
+    Width = 75
+    Caption = 'Send'
+    OnClick = SendButtonClick
+    TabOrder = 1
+  end
+  object outputMemo: TMemo
+    Left = 380
+    Height = 355
+    Top = 120
+    Width = 350
+    Font.Height = -19
+    Font.Name = 'Consolas'
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 96
+    Width = 31
+    Caption = 'Input:'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 380
+    Height = 15
+    Top = 96
+    Width = 41
+    Caption = 'Output:'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    Left = 16
+    Height = 23
+    Top = 27
+    Width = 424
+    Color = clScrollBar
+    ReadOnly = True
+    TabOrder = 3
+    Text = 'ws://localhost:4455/'
+  end
+  object Label3: TLabel
+    Left = 18
+    Height = 15
+    Top = 8
+    Width = 38
+    Caption = 'WS Url:'
+    ParentColor = False
+  end
+  object ConnectButton: TButton
+    Left = 448
+    Height = 25
+    Top = 27
+    Width = 75
+    Caption = 'Connect'
+    OnClick = ConnectButtonClick
+    TabOrder = 4
+  end
+  object CloseButton: TButton
+    Left = 536
+    Height = 25
+    Top = 27
+    Width = 75
+    Caption = 'Close'
+    OnClick = CloseButtonClick
+    TabOrder = 5
+  end
+  object obsMessageBox: TComboBox
+    Left = 16
+    Height = 23
+    Top = 120
+    Width = 350
+    AutoDropDown = True
+    ItemHeight = 15
+    Items.Strings = (
+      'GetRecordStatus'
+      'StartRecord'
+      'PauseRecord'
+      'ResumeRecord'
+      'StopRecord'
+    )
+    OnChange = obsMessageBoxChange
+    ReadOnly = True
+    Style = csDropDownList
+    TabOrder = 6
+  end
+  object recButton: TButton
+    Left = 85
+    Height = 25
+    Top = 77
+    Width = 47
+    AutoSize = True
+    Caption = 'REC'
+    OnClick = recButtonClick
+    TabOrder = 7
+  end
+  object stopButton: TButton
+    Left = 136
+    Height = 25
+    Top = 77
+    Width = 54
+    AutoSize = True
+    Caption = 'STOP'
+    OnClick = stopButtonClick
+    TabOrder = 8
+  end
+  object playButton: TButton
+    Left = 200
+    Height = 25
+    Top = 77
+    Width = 54
+    AutoSize = True
+    Caption = 'PLAY'
+    OnClick = playButtonClick
+    TabOrder = 9
+  end
+  object filenameEdit: TEdit
+    Left = 291
+    Height = 23
+    Top = 64
+    Width = 416
+    TabOrder = 10
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 750
+    OnTimer = Timer1Timer
+    Left = 696
+    Top = 16
+  end
+end
